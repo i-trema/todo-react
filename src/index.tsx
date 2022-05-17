@@ -10,8 +10,8 @@ const id = 'ma-super-div'
 const notes: Array<number> = [12, 10, 9, 16, 20]
 const age: number = 19
 
-// on crée un élément react (JSX), avec un "fragment" <> </> (balise vide)
-// pour mettre plusieurs balises dans le même élément
+//// on crée un élément react (JSX), avec un "fragment" <> </> (balise vide)
+//// pour mettre plusieurs balises dans le même élément... : 
 // const element: JSX.Element = (
 //   <div className="test" id={`${name}-${id}`}>
 //     <h1> Salut {name} </h1>
