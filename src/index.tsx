@@ -4,6 +4,9 @@ import React from 'react'
 
 // on importe la lib react-dom pour afficher react sur la page
 import { createRoot } from 'react-dom/client'
+// on importe le composant App ( le composant qui contiendra toute notre application )
+import App from './App'
+
 
 const name = 'John Doe'
 const id = 'ma-super-div'
@@ -72,4 +75,4 @@ if (!root) {
 }
 
 // j'affiche l'élément dans la balise div #root
-createRoot(root).render(element)
+createRoot(root).render(<App />)
