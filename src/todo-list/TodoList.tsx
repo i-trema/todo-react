@@ -14,6 +14,22 @@ export type TaskList = Array<Todo>
  * Ce fichier contient le composant de l'écran
  * de la liste des todos
  */
+
+
+/**
+ * Exercices : 
+ * 1. afficher le contenu de l'état (state) << taskList >> ( = le contenu du tableau )
+ * dans le JSX du composant en utilisant la méthode << map >>
+ * dans les enfants du composant << UI.TodoListContainer >>
+ * * Bonus : Afficher "il n'ya pas encore de taches" si la liste est vide.
+ * 
+ * 2. lors du clic sur le bouton "+" (<< UI.InputIcon >>),
+ * lancer une fonction "addTaskToList" qui :
+ *    1-Ajoute l'état << task >> à l'intérieur de notre tableau << taskList >>
+ *    2-Vider l'état << task >> ( le rendre égal à une chaîne de caractères vide)
+ *  
+ */
+
 export default function TodoList() {
   const [task, setTask] = useState<Task>('')
   const [taskList, setTaskList] = useState<TaskList>([])
@@ -49,6 +65,18 @@ export default function TodoList() {
       </UI.StretchFlexContainer>
 
       <UI.TodoListContainer>
+        <UI.Todo>
+          <UI.TodoLabel>Pommes de terres</UI.TodoLabel>
+          <UI.TodoIcon className="fa-solid fa-trash"></UI.TodoIcon>
+        </UI.Todo>
+        <UI.Todo>
+          <UI.TodoLabel>Pommes de terres</UI.TodoLabel>
+          <UI.TodoIcon className="fa-solid fa-trash"></UI.TodoIcon>
+        </UI.Todo>
+        <UI.Todo>
+          <UI.TodoLabel>Pommes de terres</UI.TodoLabel>
+          <UI.TodoIcon className="fa-solid fa-trash"></UI.TodoIcon>
+        </UI.Todo>
         <UI.Todo>
           <UI.TodoLabel>Pommes de terres</UI.TodoLabel>
           <UI.TodoIcon className="fa-solid fa-trash"></UI.TodoIcon>
