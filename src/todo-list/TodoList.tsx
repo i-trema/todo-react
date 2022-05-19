@@ -198,7 +198,16 @@ export default function TodoList() {
         )}
       </UI.TodoListContainer>
 
-      <BottomNav />
+      <BottomNav topBar={
+        <UI.BottomNavAction>
+        <UI.BottomNavShare>
+          <i className="fa-solid fa-share"></i>
+        </UI.BottomNavShare>
+        <UI.BottomNavDelete>
+          <i className="fa-solid fa-trash"></i>
+        </UI.BottomNavDelete>
+      </UI.BottomNavAction>
+      }/>
     </UI.AppContainer>
   )
 }

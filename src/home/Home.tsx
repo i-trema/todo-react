@@ -1,14 +1,25 @@
-import { Link } from "react-router-dom";
-import BottomNav from "../shared/BottomNav";
+import { useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import BottomNav from '../shared/BottomNav'
 
 export default function Home() {
-    return (
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const registeredUser = localStorage.getItem('user')
+
+    if (!registeredUser) {
+      navigate('/connexion')
+    }
+  }, [])
+
+  return (
     <>
-    <h1>Home</h1>
-    <p>
-        <Link to="/liste/175123131">La todo liste</Link>
-    </p>
-    <BottomNav />
+      <h1>Home</h1>
+      <p>
+        <Link to="/liste/17532752">La todo liste</Link>
+      </p>
+      <BottomNav />
     </>
-    )
+  )
 }

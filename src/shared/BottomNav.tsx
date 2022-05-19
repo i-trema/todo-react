@@ -1,17 +1,15 @@
 import * as UI from './ui'
 
-export default function BottomNav() {
+export type BottomNavsProps = {
+    topBar?: JSX.Element
+}
+
+export default function BottomNav({ topBar }: BottomNavsProps) {
   return (
     <UI.BottomNav>
-      <UI.BottomNavAction>
-        <UI.BottomNavShare>
-          <i className="fa-solid fa-share"></i>
-        </UI.BottomNavShare>
-        <UI.BottomNavDelete>
-          <i className="fa-solid fa-trash"></i>
-        </UI.BottomNavDelete>
-      </UI.BottomNavAction>
-
+        {topBar}
+        
+      
       <UI.BottomNavMenu>
         <UI.BottomNavItem className="fa-solid fa-bars"></UI.BottomNavItem>
         <UI.BottomNavItem className="fa-solid fa-user"></UI.BottomNavItem>
