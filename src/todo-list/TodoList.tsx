@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import uniqid from 'uniqid'
 import BottomNav from '../shared/BottomNav'
@@ -57,8 +57,35 @@ export type TaskList = Array<Todo>
  *    un « filter » sur la « taskList »)
  */
 export default function TodoList() {
+  const [username, setUsername] = useState<string>('')
   const [task, setTask] = useState<Task>('')
   const [taskList, setTaskList] = useState<TaskList>([])
+
+  useEffect(() => {
+    const storeUser = localStorage.getItem('user')
+
+    console.log('Coucou')
+
+    if (storeUser) {
+      setUsername(JSON.parse(storeUser).displayName)
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log('Souscription au topic "changeUsername"')
+
+    const onUsernameChange = (topic: string, newUsername: string) => {
+      console.log('réception du username : ' + newUsername)
+      setUsername(newUsername)
+    }
+    //// on récupère le topic 'changeUsername' sur lequel on a pusblish le changement de nom
+    PubSub.subscribe('changeUsername', onUsernameChange)
+    //// on se désinscrit du topic changeUsername
+    return () => {
+      console.log('désinscription du topic changeUsername');
+      PubSub.unsubscribe(onUsernameChange)
+    }
+  }, [])
 
   // onTaskChange :: (React.SyntheticEvent) -> void
   const onTaskChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
@@ -163,7 +190,7 @@ export default function TodoList() {
           <UI.TagIcon className="fa-solid fa-user"></UI.TagIcon>
           <UI.TagLabelContainer>
             <UI.TagLabelEntitled>Par</UI.TagLabelEntitled>
-            <UI.TagLabel>John</UI.TagLabel>
+            <UI.TagLabel>{username}</UI.TagLabel>
           </UI.TagLabelContainer>
         </UI.Tag>
       </UI.CenteredFlexContainer>
@@ -198,16 +225,18 @@ export default function TodoList() {
         )}
       </UI.TodoListContainer>
 
-      <BottomNav topBar={
-        <UI.BottomNavAction>
-        <UI.BottomNavShare>
-          <i className="fa-solid fa-share"></i>
-        </UI.BottomNavShare>
-        <UI.BottomNavDelete>
-          <i className="fa-solid fa-trash"></i>
-        </UI.BottomNavDelete>
-      </UI.BottomNavAction>
-      }/>
+      <BottomNav
+        topBar={
+          <UI.BottomNavAction>
+            <UI.BottomNavShare>
+              <i className="fa-solid fa-share"></i>
+            </UI.BottomNavShare>
+            <UI.BottomNavDelete>
+              <i className="fa-solid fa-trash"></i>
+            </UI.BottomNavDelete>
+          </UI.BottomNavAction>
+        }
+      />
     </UI.AppContainer>
   )
 }

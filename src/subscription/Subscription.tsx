@@ -67,9 +67,9 @@ export default function Subscription() {
       <UI.InputContainer>
         <UI.Input
           name="username"
-          placeholder="Nom d'utilisateur"
+          placeholder="Nom d'utilisateur..."
           onChange={onChange(setUsername)}
-          value={username}
+          value={username} 
         />
       </UI.InputContainer>
       <p>{usernameError}</p>
